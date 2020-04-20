@@ -130,7 +130,7 @@ func Provider() tfbridge.ProviderInfo {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"NUTANIX_PROXY_URL"},
 				},
-			}
+			},
 			// "insecure": {
 			// 	Type: makeType("insecure", "Insecure"),
 			// 	Default: &tfbridge.DefaultInfo{
@@ -155,7 +155,7 @@ func Provider() tfbridge.ProviderInfo {
 			"nutanix_subnet": {Tok: makeResource(mainMod, "Subnet")},
 			"nutanix_category_key": {Tok: makeResource(mainMod, "CategoryKey")},
 			"nutanix_category_value": {Tok: makeResource(mainMod, "CategoryValue")},
-			"nutanix_network_security_rule": {Tok: makeResource(mainMod, "NetworkSecurityGroup")}
+			"nutanix_network_security_rule": {Tok: makeResource(mainMod, "NetworkSecurityGroup")},
 			
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
@@ -168,7 +168,7 @@ func Provider() tfbridge.ProviderInfo {
 			"nutanix_image": {Tok: makeDataSource(mainMod, "getImage")},
 			"nutanix_subnet": {Tok: makeDataSource(mainMod, "getSubnet")},
 			"nutanix_category_key": {Tok: makeDataSource(mainMod, "getCategoryKey")},
-			"nutanix_network_security_rule": {Tok: makeDataSource(mainMod, "getNetworkSecurityGroup")}
+			"nutanix_network_security_rule": {Tok: makeDataSource(mainMod, "getNetworkSecurityGroup")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
