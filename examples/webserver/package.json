@@ -8,7 +8,7 @@
         "build": "tsc"
     },
     "dependencies": {
-        "@pulumi/pulumi": "^2.0.0",
+        "@pulumi/pulumi": "^1.12",
         "@pulumi/packet": "latest"
     },
     "devDependencies": {
