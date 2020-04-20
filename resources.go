@@ -101,32 +101,74 @@ func Provider() tfbridge.ProviderInfo {
 		Config:      map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
-			// "region": {
-			// 	Type: makeType("region", "Region"),
+			"username": {
+				Type: makeType("username", "Username")
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"NUTANIX_USERNAME"},
+				},
+			},
+			"password": {
+				Type: makeType("password", "Password")
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"NUTANIX_PASSWORD"},
+				},
+			},
+			"endpoint": {
+				Type: makeType("endpoint", "Endpoint")
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"NUTANIX_ENDPOINT"},
+				},
+			},
+			"port": {
+				Type: makeType("port", "Port")
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"NUTANIX_PORT"},
+				},
+			},
+			"proxy_url": {
+				Type: makeType("proxy_url", "Proxy_url")
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"NUTANIX_PROXY_URL"},
+				},
+			}
+			// "insecure": {
+			// 	Type: makeType("insecure", "Insecure")
 			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"AWS_REGION", "AWS_DEFAULT_REGION"},
+			// 		EnvVars: []string{"NUTANIX_INSECURE"},
 			// 	},
 			// },
+			// "wait_timeout": {
+			// 	Type: makeType("wait_timeout", "wait_timeout")
+			// 	Default: &tfbridge.DefaultInfo{
+			// 		EnvVars: []string{"NUTANIX_WAIT_TIMEOUT"},
+			// 	},
+			// }
 		},
 		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
+		Resources: map[string]*tfbridge.ResourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.
 			//
-			// "aws_iam_role": {Tok: makeResource(mainMod, "IamRole")}
-			//
-			// "aws_acm_certificate": {
-			// 	Tok: makeResource(mainMod, "Certificate"),
-			// 	Fields: map[string]*tfbridge.SchemaInfo{
-			// 		"tags": {Type: makeType(mainPkg, "Tags")},
-			// 	},
-			// },
+			"nutanix_virtual_machine": {Tok: makeResource(mainMod, "VirtualMachine")},
+			"nutanix_image": {Tok: makeResource(mainMod, "Image")},
+			"nutanix_subnet": {Tok: makeResource(mainMod, "Subnet")},
+			"nutanix_category_key": {Tok: makeResource(mainMod, "CategoryKey")},
+			"nutanix_category_value": {Tok: makeResource(mainMod, "CategoryValue")},
+			"nutanix_network_security_rule": {Tok: makeResource(mainMod, "NetworkSecurityGroup")}
+			
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi function. An example
 			// is below.
 			// "aws_ami": {Tok: makeDataSource(mainMod, "getAmi")},
+			"nutanix_virtual_machine": {Tok: makeDataSource(mainMod, "getVirtualMachine")},
+			"nutanix_cluster": {Tok: makeDataSource(mainMod, "getCluster")},
+			"nutanix_clusters": {Tok: makeDataSource(mainMod, "getClusters")},
+			"nutanix_image": {Tok: makeDataSource(mainMod, "getImage")},
+			"nutanix_subnet": {Tok: makeDataSource(mainMod, "getSubnet")},
+			"nutanix_category_key": {Tok: makeDataSource(mainMod, "getCategoryKey")},
+			"nutanix_network_security_rule": {Tok: makeDataSource(mainMod, "getNetworkSecurityGroup")}
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
