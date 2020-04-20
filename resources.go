@@ -102,43 +102,43 @@ func Provider() tfbridge.ProviderInfo {
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
 			"username": {
-				Type: makeType("username", "Username")
+				Type: makeType("username", "Username"),
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"NUTANIX_USERNAME"},
 				},
 			},
 			"password": {
-				Type: makeType("password", "Password")
+				Type: makeType("password", "Password"),
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"NUTANIX_PASSWORD"},
 				},
 			},
 			"endpoint": {
-				Type: makeType("endpoint", "Endpoint")
+				Type: makeType("endpoint", "Endpoint"),
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"NUTANIX_ENDPOINT"},
 				},
 			},
 			"port": {
-				Type: makeType("port", "Port")
+				Type: makeType("port", "Port"),
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"NUTANIX_PORT"},
 				},
 			},
 			"proxy_url": {
-				Type: makeType("proxy_url", "Proxy_url")
+				Type: makeType("proxy_url", "Proxy_url"),
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"NUTANIX_PROXY_URL"},
 				},
 			}
 			// "insecure": {
-			// 	Type: makeType("insecure", "Insecure")
+			// 	Type: makeType("insecure", "Insecure"),
 			// 	Default: &tfbridge.DefaultInfo{
 			// 		EnvVars: []string{"NUTANIX_INSECURE"},
 			// 	},
 			// },
 			// "wait_timeout": {
-			// 	Type: makeType("wait_timeout", "wait_timeout")
+			// 	Type: makeType("wait_timeout", "wait_timeout"),
 			// 	Default: &tfbridge.DefaultInfo{
 			// 		EnvVars: []string{"NUTANIX_WAIT_TIMEOUT"},
 			// 	},
