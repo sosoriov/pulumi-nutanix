@@ -131,18 +131,18 @@ func Provider() tfbridge.ProviderInfo {
 					EnvVars: []string{"NUTANIX_PROXY_URL"},
 				},
 			},
-			// "insecure": {
-			// 	Type: makeType("insecure", "Insecure"),
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"NUTANIX_INSECURE"},
-			// 	},
-			// },
-			// "wait_timeout": {
-			// 	Type: makeType("wait_timeout", "wait_timeout"),
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"NUTANIX_WAIT_TIMEOUT"},
-			// 	},
-			// }
+			"insecure": {
+				Type: makeType("insecure", "Insecure"),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"NUTANIX_INSECURE"},
+				},
+			},
+			"wait_timeout": {
+				Type: makeType("wait_timeout", "wait_timeout"),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"NUTANIX_WAIT_TIMEOUT"},
+				},
+			},
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
