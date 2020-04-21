@@ -2,7 +2,8 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Add prepare command to rename the `nutanix` occurrences
+* Prepare for 2.0 release
+* Add prepare command to rename the `xyz` occurrences
 
 ---
 

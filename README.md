@@ -12,13 +12,13 @@ Modify this README to describe:
 
 ## Creating a Pulumi Terraform Bridge Provider
 
-First, clone this repo with the name of the desired provider in place of `nutanix`:
+First, clone this repo with the name of the desired provider in place of `xyz`:
 
 ```
-git clone https://github.com/pulumi/pulumi-tf-provider-boilerplate pulumi-nutanix
+git clone https://github.com/pulumi/pulumi-tf-provider-boilerplate pulumi-xyz
 ```
 
-Second, replace references to `nutanix` with the name of your provider:
+Second, replace references to `xyz` with the name of your provider:
 
 ```
 make prepare NAME=foo REPOSITORY=github.com/pulumi/pulumi-foo
@@ -37,15 +37,14 @@ In order to properly build the sdks, the following tools are expected:
 
 In the root of the repository, run:
 
-- `go get github.com/pulumi/scripts/gomod-doccopy` (Note: do not set `GO111MODULE=on` here)
 - `GO111MODULE=on go get github.com/pulumi/pulumi-terraform@master`
-- `GO111MODULE=on go get github.com/terraform-providers/terraform-provider-nutanix` (where `nutanix` is the name of the provider)
-- `GO111MODULE=on go mod vendor`
+- `(cd provider && go get github.com/terraform-providers/terraform-provider-foo)`  (where `foo` is the name of the provider - note the parenthesis to run this in a subshell)
+- `(cd provider && go mod vendor)`
 - `make ensure`
 
 ### Build the provider:
 
-- Edit `resources.go` to map each resource, and specify provider information
+- Edit `provider/resources.go` to map each resource, and specify provider information
 - Enumerate any examples in `examples/examples_test.go`
 - `make`
 
@@ -73,14 +72,14 @@ To use from Python, install using `pip`:
 
 To use from Go, use `go get` to grab the latest version of the library
 
-    $ go get github.com/pulumi/pulumi-nutanix/sdk/go/...
+    $ go get github.com/pulumi/pulumi-xyz/sdk/go/...
 
 ## Configuration
 
-The following configuration points are available for the `nutanix` provider:
+The following configuration points are available for the `xyz` provider:
 
-- `nutanix:apiKey` (environment: `XYZ_API_KEY`) - the API key for `nutanix`
-- `nutanix:region` (environment: `XYZ_REGION`) - the region in which to deploy resources
+- `xyz:apiKey` (environment: `XYZ_API_KEY`) - the API key for `xyz`
+- `xyz:region` (environment: `XYZ_REGION`) - the region in which to deploy resources
 
 ## Reference
 

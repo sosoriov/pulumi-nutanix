@@ -12,23 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package nutanix
+package xyz
 
 import (
 	"unicode"
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/terraform"
-	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfbridge"
-	"github.com/pulumi/pulumi/pkg/resource"
-	"github.com/pulumi/pulumi/pkg/tokens"
-	"github.com/terraform-providers/terraform-provider-nutanix/nutanix"
+	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
+	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
+	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
+	"github.com/terraform-providers/terraform-provider-xyz/xyz"
 )
 
 // all of the token components used below.
 const (
 	// packages:
-	mainPkg = "nutanix"
+	mainPkg = "xyz"
 	// modules:
 	mainMod = "index" // the y module
 )
@@ -87,17 +87,17 @@ var managedByPulumi = &tfbridge.DefaultInfo{Value: "Managed by Pulumi"}
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := nutanix.Provider().(*schema.Provider)
+	p := xyz.Provider().(*schema.Provider)
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:           p,
-		Name:        "nutanix",
-		Description: "A Pulumi package for creating and managing nutanix cloud resources.",
-		Keywords:    []string{"pulumi", "nutanix"},
+		Name:        "xyz",
+		Description: "A Pulumi package for creating and managing xyz cloud resources.",
+		Keywords:    []string{"pulumi", "xyz"},
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-nutanix",
+		Repository:  "https://github.com/pulumi/pulumi-xyz",
 		Config:      map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
@@ -145,7 +145,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		PreConfigureCallback: preConfigureCallback,
-		Resources: map[string]*tfbridge.ResourceInfo{
+		Resources:            map[string]*tfbridge.ResourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.
@@ -156,12 +156,10 @@ func Provider() tfbridge.ProviderInfo {
 			"nutanix_category_key": {Tok: makeResource(mainMod, "CategoryKey")},
 			"nutanix_category_value": {Tok: makeResource(mainMod, "CategoryValue")},
 			"nutanix_network_security_rule": {Tok: makeResource(mainMod, "NetworkSecurityGroup")},
-			
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi function. An example
 			// is below.
-			// "aws_ami": {Tok: makeDataSource(mainMod, "getAmi")},
 			"nutanix_virtual_machine": {Tok: makeDataSource(mainMod, "getVirtualMachine")},
 			"nutanix_cluster": {Tok: makeDataSource(mainMod, "getCluster")},
 			"nutanix_clusters": {Tok: makeDataSource(mainMod, "getClusters")},
